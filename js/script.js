@@ -19,7 +19,7 @@ function hideHeadcontent(){
   $('.head .head-body h1').hide();
   $('.head-body p').hide();
   $('.head-body a.btn').hide();
-  $('.logo').css({
+  $('.logo_in_mob').css({
     'visibility':'hidden'
   });
  }
@@ -27,7 +27,7 @@ function showHeadcontent(){
   $('.head .head-body h1').show();
   $('.head-body p').show();
   $('.head-body a.btn').show();
-  $('.logo').css({
+  $('.logo_in_mob').css({
     'visibility':'visible'
   });
 }  
@@ -130,10 +130,9 @@ if($(window).width() <= 480){
 
 
 
-		var help = $('form.send-help-massage');
+		var help = $('.help');
 		var write = $('.open-email');
 		var close = $('.close-email');
-
 		write.on('click', function(){
 			help.addClass('open');
 			write.hide();
@@ -145,21 +144,43 @@ if($(window).width() <= 480){
 			close.hide();
 		})
 
-
-				// var movementStrength = 4;
-				// var height = movementStrength / $(window).height();
-				// var width = movementStrength / $(window).width();
-				// $(".projects").mousemove(function(e){
-				//           var pageX = e.pageX - ($(window).width() / 2);
-				//           var pageY = e.pageY - ($(window).height() / 2);
-				//           var newvalueX = width * pageX * -1 - 15;
-				//           var newvalueY = height * pageY * -1 - 15;
-				//           $('.projects').css("background-position", newvalueX+"px     "+newvalueY+"px");
-				// });
-
 		var element = $('.scroll_hidden');
+    var btn = $('.scroll_hidden .btn-get a');
+    btn.css({
+              'border': '1px solid rgba(255, 255, 255, .502)',
+              'background-color' : 'transparent'
+            })
+    btn.on('mouseover', function(){
+      $(this).css({
+              'border' : '1px solid #1eafba',
+              'background-color' : '#1eafba'
+            })
+    })
+    btn.on('mouseleave', function(){
+      $(this).css({
+             'border': '1px solid rgba(255, 255, 255, .502)',
+            'background-color' : 'transparent'
+            })
+    })
     $(window).scroll(function(){
-        element['fade'+ ($(this).scrollTop() > 0 ? 'In': 'Out')](500);          
+        element['display'+ ($(this).scrollTop() > 0 ? 'block': 'none')];
+        if(($(this).scrollTop() > 0)){
+            element.css({
+            'background': 'rgba(119, 103, 215, .8)',
+          })
+            btn.css({
+              'border' : '1px solid #1eafba',
+              'background-color' : '#1eafba'
+            })
+        } else{
+            element.css({
+            'background': 'transparent',
+          })
+             btn.css({
+              'border': '1px solid rgba(255, 255, 255, .502)',
+              'background-color' : 'transparent'
+            })
+        }  
     });
 
 
